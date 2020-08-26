@@ -1,0 +1,7 @@
+
+
+const ADD_USER = 'ADD_USER';
+const ADD_COMMENT = 'ADD_COMMENT';
+const ADD_ARTICAL = 'ADD_ARTICAL';
+
+export { ADD_USER, ADD_COMMENT, ADD_ARTICAL };
