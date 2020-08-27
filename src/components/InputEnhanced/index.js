@@ -1,17 +1,24 @@
 import React from 'react';
-import className from './index.module.css';
+import CN from './index.module.css';
 
 class InputEnhanced extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
-        let initClassName = className.container + '' + this.props.className;
+        let { props: { className, type, value, onChange, children } } = this;
+        let initClassName = CN['container'] + '' + className;
         return (
-            <div className={ initClassName }>
-                <input className={ className.input } type={ this.props.type }/>
-                { this.props.children }
+            <div className={CN['container']}>
+                <input className={CN['input']} type={type} value={value} onChange={onChange} />
+                <div className={CN['enhance-panel']}>
+                    {children}
+                </div>
             </div>
         );
     }
 }
+
+InputEnhanced.defaultProps = {
+    type: 'text',
+    className: ''
+}
+
+export default InputEnhanced;
