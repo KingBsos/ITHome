@@ -32,7 +32,7 @@ Mock.mock("/allArtical", {
                 id: '@GUID',
                 label: '@CUSTOMARTICALLABEL',
                 title: '@TITLE',
-                time: '@CUSTOMTIME(300)',
+                time: '@CUSTOMTIME(5000)',
                 author: '@CUSTOMUSER',
                 poster: '@DATAIMAGE(100x50)',
                 body: '@PARAGRAPH(10)',
