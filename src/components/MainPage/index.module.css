@@ -1,0 +1,16 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 75px;
+}
+.content-body {
+    height: 100%;
+}
+.footer-navbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

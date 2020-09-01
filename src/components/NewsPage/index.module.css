@@ -1,0 +1,46 @@
+.container {
+    padding-top: 100px;
+    position: relative;
+}
+.wrap {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+.navbar.deep {
+    white-space: nowrap;
+    overflow: auto;
+    margin-right: 50px;
+}
+.item {
+    display: inline-block;
+    padding: 10px 10px;
+    position: relative;
+}
+.item .active {
+    font-size: 1.2em;
+}
+.item .active:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 30%;
+    height: 3px;
+    background-color: #f00;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -3px);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.custom-menu.deep {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    padding-right: 15px;
+    font-size: 1.3em;
+}

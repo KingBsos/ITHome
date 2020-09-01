@@ -1,8 +1,5 @@
 .navbar {
     margin: 0;
     padding: 0;
-    display: flex;
-}
-.navbar > * {
-    flex-grow: 1;
+    list-style: none;
 }

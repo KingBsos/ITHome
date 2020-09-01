@@ -1,0 +1,14 @@
+.link {
+    display: inline-block;
+    color: #333;
+    padding: 10px 10px;
+}
+.link.active {
+    color: rgb(255, 0, 0);
+}
+.link .custom-icon {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 30px;
+}

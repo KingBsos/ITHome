@@ -1,14 +1,11 @@
 import React from 'react';
 import './App.css';
-import InputEnhanced from './components/InputEnhanced';
+import MainPage from './components/MainPage';
 
-function App() {
+function App(props) {
   return (
-    <div>
-      <InputEnhanced>
-        <span className="">+9</span>
-      </InputEnhanced>
-      <input></input>
+    <div className="container">
+      <MainPage className="w-100 h-100"/>
     </div>
   );
 }

@@ -1,5 +1,12 @@
+@import '//at.alicdn.com/t/font_2034516_iqydkden7pg.css';
+@import './assets/css/css/index.css';
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  user-select: none;
+}
+a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
 }

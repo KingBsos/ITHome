@@ -1,15 +1,38 @@
 import React from 'react';
-import style from './index.module.css';
+import PropTypes from 'prop-types';
+import cn from './index.module.css';
 
 class Navbar extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
+        let {data, render, className, itemClass} = this.props;
+        let inner = data.map((item, index) => {
+            return (
+                <li key={index} className={itemClass}>
+                    {
+                        render(item)
+                    }
+                </li>
+            );
+        });
         return (
-            <ul className={ style.navbar }>
-                { this.props.children }
+            <ul className={ `${cn.navbar} ${className}` }>
+                {
+                    inner
+                }
             </ul>
+        );
+    }
+}
+Navbar.propTypes = {
+    data: PropTypes.array,
+    render: PropTypes.func,
+    itemClass: PropTypes.string
+}
+Navbar.defaultProps = {
+    data: [],
+    render({url, text}) {
+        return (
+            <a href={url}>{text}</a>
         );
     }
 }

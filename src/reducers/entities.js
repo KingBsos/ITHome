@@ -6,18 +6,20 @@ const initState = {
     allIds: []
 }
 function updateNormalizedData(oldData, newData, keyName) {
+    let mergeData = {
+        ...oldData.byId, ...newData[keyName]
+    };
     function _computeAllId(arr, arr2) {
         let newArr = [...arr];
-        for(let i in arr2) {
+        for(let i of arr2) {
             if(!arr.includes(i)) newArr.push(i);
         }
-        return newArr;
+        return newArr.sort((a, b) => {
+            return mergeData[b].time - mergeData[a].time;
+        });
     }
     return {
-        byId: {
-            ...oldData.byId,
-            ...newData[keyName]
-        },
+        byId: mergeData,
         allIds: _computeAllId(oldData.allIds, Object.keys(newData[keyName]))
     }
 }
