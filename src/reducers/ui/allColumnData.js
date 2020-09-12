@@ -40,6 +40,56 @@ let initState = [
         text: '最新', url: 'newest2', route: {
             component: NewestPageBind
         }
+    },
+    {
+        text: '最新', url: 'newest2', route: {
+            component: NewestPageBind
+        }
+    },
+    {
+        text: '最新', url: 'newest2', route: {
+            component: NewestPageBind
+        }
+    },
+    {
+        text: '最新', url: 'newest2', route: {
+            component: NewestPageBind
+        }
+    },
+    {
+        text: '最新', url: 'newest2', route: {
+            component: NewestPageBind
+        }
+    },
+    {
+        text: '最新', url: 'newest2', route: {
+            component: NewestPageBind
+        }
+    },
+    {
+        text: '最新', url: 'newest2', route: {
+            component: NewestPageBind
+        }
+    },
+    {
+        text: '最新', url: 'newest2', route: {
+            component: NewestPageBind
+        }
+    },
+    {
+        text: '最新', url: 'newest2', route: {
+            component: NewestPageBind
+        }
+    },
+    {
+        text: '最新', url: 'newest2', route: {
+            component: NewestPageBind
+        }
+    },
+    {
+        text: '最新', url: 'newest2', route: {
+            component: NewestPageBind
+        }
     }
 ];
 function allColumnData(state = initState, action) {

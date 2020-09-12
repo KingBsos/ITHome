@@ -19,8 +19,8 @@ Mock.Random.extend({
     customArticalLabel() {
         return this.pick(articalLabels);
     },
-    customTime(i=60) {
-        return new Date().getTime()+Math.round(Math.random()*1000*i)
+    customTime(i = 60) {
+        return new Date().getTime() + Math.round(Math.random() * 1000 * i)
     }
 });
 Mock.mock("/allArtical", {
@@ -34,8 +34,17 @@ Mock.mock("/allArtical", {
                 title: '@TITLE',
                 time: '@CUSTOMTIME(5000)',
                 author: '@CUSTOMUSER',
+                editorInCharge: '@CUSTOMUSER',
                 poster: '@DATAIMAGE(100x50)',
-                body: '@PARAGRAPH(10)',
+                body: '@CPARAGRAPH(20,30)',
+                'relatedArticle|2-5': [
+                    {
+                        id: '@GUID',
+                        title: '@TITLE',
+                        time: '@CUSTOMTIME(5000)',
+                        poster: '@DATAIMAGE(100x50)'
+                    }
+                ],
                 "comments|3-8": [
                     {
                         id: '@GUID',
@@ -47,3 +56,11 @@ Mock.mock("/allArtical", {
         ]
     }
 });
+Mock.mock('/carouselData', Mock.mock({
+    "data|5": [
+        {
+            id: '@GUID',
+            imgUrl: '@DATAIMAGE(300x100)'
+        }
+    ]
+}).data)

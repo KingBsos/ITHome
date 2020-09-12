@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import cn from './index.module.css';
 
 function formatDate(time) {
@@ -9,10 +10,10 @@ function formatDate(time) {
     if (minutes < 10) minutes = '0' + minutes;
     return `${hour}:${minutes}`;
 }
-function ArticalItem({ className, artical: { poster, title, time, comments } }) {
+function ArticalItem({ className, artical: { id, poster, title, time, comments } }) {
     let containerClass = `${className} ${cn['container']}`;
     return (
-        <div className={containerClass}>
+        <Link className={containerClass} to={`/artical/${id}`}>
             <div className="flex-1">
                 <p className={cn['title']}>{title}</p>
                 <div className={cn['footer'] + ' mT_25rem'}>
@@ -23,7 +24,7 @@ function ArticalItem({ className, artical: { poster, title, time, comments } }) 
             <div className="vA-m_">
                 <img className={cn['poster']} src={poster} alt={title} />
             </div>
-        </div>
+        </Link>
     );
 }
 

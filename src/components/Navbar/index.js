@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import cn from './index.module.css';
 
 class Navbar extends React.Component {
     render() {
-        let {data, render, className, itemClass} = this.props;
+        let { data, render, className, style, itemClass, customRef, ...rest } = this.props;
+        let containerClass = `${className} ${cn['navbar']}`;
         let inner = data.map((item, index) => {
             return (
                 <li key={index} className={itemClass}>
@@ -15,7 +16,7 @@ class Navbar extends React.Component {
             );
         });
         return (
-            <ul className={ `${cn.navbar} ${className}` }>
+            <ul ref={customRef} className={containerClass} {...rest} style={style}>
                 {
                     inner
                 }
@@ -26,15 +27,19 @@ class Navbar extends React.Component {
 Navbar.propTypes = {
     data: PropTypes.array,
     render: PropTypes.func,
-    itemClass: PropTypes.string
+    itemClass: PropTypes.string,
 }
 Navbar.defaultProps = {
     data: [],
-    render({url, text}) {
+    render({ url, text }) {
         return (
             <a href={url}>{text}</a>
         );
     }
 }
 
-export default Navbar;
+export default forwardRef((props, ref) => {
+    return (
+        <Navbar {...props} customRef={ref} />
+    );
+});

@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import NewestPage from './NewestPage';
 
-function mapState({entities}) {
+function mapState({entities, ui: {carouselData}}) {
     return {
+        carouselData,
         articals: entities.articals
     }
 }

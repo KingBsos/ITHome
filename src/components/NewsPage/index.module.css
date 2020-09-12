@@ -12,8 +12,15 @@
 }
 .navbar.deep {
     white-space: nowrap;
-    overflow: auto;
+    overflow: hidden;
     margin-right: 50px;
+}
+.nav-link {
+    color: initial;
+    font-size: 1rem;
+}
+.nav-link:hover {
+    color: initial;
 }
 .item {
     display: inline-block;

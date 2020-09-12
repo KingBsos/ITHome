@@ -1,4 +1,4 @@
-import { ADD_USER, ADD_COMMENT, ADD_ARTICAL } from '../constants';
+import { ADD_USER, ADD_COMMENT, ADD_ARTICAL, ADD_CAROUSEL_ITEM } from '../constants';
 import axios from 'axios';
 import { normalize, schema } from 'normalizr';
 
@@ -20,6 +20,12 @@ function addArtical(artical) {
         artical
     }
 }
+function addCarousel(payload) {
+    return {
+        type: ADD_CAROUSEL_ITEM,
+        payload
+    }
+}
 function articalDataNormalize(data) {
     let user = new schema.Entity('users');
     let comment = new schema.Entity('comments', {
@@ -27,6 +33,7 @@ function articalDataNormalize(data) {
     });
     let artical = new schema.Entity('articals', {
         author: user,
+        editorInCharge: user,
         comments: [comment]
     });
     let normalizedData = normalize(data, {
@@ -36,7 +43,7 @@ function articalDataNormalize(data) {
 }
 function fetchAllArtical(url) {
     return function (dispatch, getState) {
-        return axios('/allArtical').then(result => {
+        return axios(url).then(result => {
             return result.data;
         }).then(({ data }) => {
             let { entities: { users, comments, articals }} = articalDataNormalize(data);
@@ -46,5 +53,12 @@ function fetchAllArtical(url) {
         });
     }
 }
+function fetchCarouselData(url) {
+    return function(dispatch, getState) {
+        return axios(url).then(result => result.data).then(data => {
+            dispatch(addCarousel(data));
+        });
+    }
+}
 export { addUser, addComment, addArtical };
-export { fetchAllArtical };
+export { fetchAllArtical, fetchCarouselData };

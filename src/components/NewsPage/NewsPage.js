@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { NavLink, Redirect, Switch, Route } from 'react-router-dom';
 import cn from './index.module.css';
 import HeadNav from '../HeadNav';
-import Navbar from '../Navbar';
+import NavbarMoveEvent from '../NavbarMoveEvent';
 
 let navbarClass = `${cn['navbar']} ${cn['deep']}`;
 let itemClass = cn['item'];
@@ -11,7 +11,7 @@ function NewsPage({ className, match, data }) {
     className = `${className} ${cn['container']}`;
     const render = useCallback(function ({ url, text }) {
         return (
-            <NavLink draggable="false" to={`${match.url}/${url}`} activeClassName={cn['active']}>
+            <NavLink className={cn['nav-link']} draggable="false" to={`${match.url}/${url}`} activeClassName={cn['active']}>
                 {text}
             </NavLink>
         );
@@ -21,7 +21,7 @@ function NewsPage({ className, match, data }) {
             <div className={cn['wrap']}>
                 <HeadNav />
                 <div className="po-relative">
-                    <Navbar className={navbarClass} {...{ itemClass, data, render }} />
+                    <NavbarMoveEvent className={navbarClass} {...{ itemClass, data, render }} />
                     <span className={`iconfont icon-zhankai ${cn['custom-menu']} ${cn['deep']}`}></span>
                 </div>
             </div>
