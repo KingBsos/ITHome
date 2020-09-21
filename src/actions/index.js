@@ -42,13 +42,12 @@ function articalDataNormalize(data) {
     return normalizedData;
 }
 function fetchAllArtical(url) {
-    return function (dispatch, getState) {
+    return function (dispatch) {
         return axios(url).then(result => {
             return result.data;
         }).then(({ data }) => {
-            let { entities: { users, comments, articals }} = articalDataNormalize(data);
+            let { entities: { users, articals }} = articalDataNormalize(data);
             dispatch(addUser(users));
-            dispatch(addComment(comments));
             dispatch(addArtical(articals));
         });
     }

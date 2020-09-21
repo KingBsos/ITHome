@@ -11,12 +11,12 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import createState from './reducers';
 import './mockData';
-import { fetchAllArtical, fetchCarouselData } from './actions';
+import { fetchCarouselData, fetchAllArtical } from './actions';
 
 const history = createBrowserHistory();
 
 const store = createStore(createState(history), applyMiddleware(routerMiddleware(history), ReduxThunk));
-store.dispatch(fetchAllArtical('/allArtical'));
+store.dispatch(fetchAllArtical('/data/artical'));
 store.dispatch(fetchCarouselData('/carouselData'));
 
 ReactDOM.render(

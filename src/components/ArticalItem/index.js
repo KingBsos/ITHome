@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import cn from './index.module.css';
+import { commonNumberFormat } from '../../utils';
 
 function formatDate(time) {
     let date = new Date(time);
@@ -10,7 +11,7 @@ function formatDate(time) {
     if (minutes < 10) minutes = '0' + minutes;
     return `${hour}:${minutes}`;
 }
-function ArticalItem({ className, artical: { id, poster, title, time, comments } }) {
+function ArticalItem({ className, artical: { id, poster, title, time, commentNumber } }) {
     let containerClass = `${className} ${cn['container']}`;
     return (
         <Link className={containerClass} to={`/artical/${id}`}>
@@ -18,7 +19,7 @@ function ArticalItem({ className, artical: { id, poster, title, time, comments }
                 <p className={cn['title']}>{title}</p>
                 <div className={cn['footer'] + ' mT_25rem'}>
                     <span className={cn['custom-span']}>{formatDate(time)}</span>
-                    <span className={cn['custom-span']}>{comments.length} 评</span>
+                    <span className={cn['custom-span']}>{commonNumberFormat(commentNumber)} 评</span>
                 </div>
             </div>
             <div className="vA-m_">
