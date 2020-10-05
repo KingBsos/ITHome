@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux';
-import { ADD_USER, ADD_COMMENT, ADD_ARTICAL} from '../constants';
+
+import {
+  ADD_ARTICAL,
+  ADD_COMMENT,
+  ADD_USER,
+} from '../constants';
 
 const initState = {
     byId: {},
@@ -43,6 +48,14 @@ function articals(state = initState, action) {
     switch (action.type) {
         case ADD_ARTICAL: {
             return updateNormalizedData(state, action, 'artical');
+        }
+        case 'addArticalDetail': {
+            let target = {...state.byId[action.payload.id], ...action.payload};
+            return {
+                ...state, byId: {
+                    ...state.byId, [target.id]: target
+                }
+            }
         }
         default: return state;
     }

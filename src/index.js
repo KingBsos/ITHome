@@ -1,32 +1,36 @@
+import './index.css';
+import './mockData';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createBrowserHistory } from 'history';
-import { routerMiddleware, ConnectedRouter } from 'connected-react-router';
-import { createStore, applyMiddleware } from 'redux';
-import ReduxThunk from 'redux-thunk';
-import { BrowserRouter, Route } from 'react-router-dom';
-import App from './App.js';
+
 import { Provider } from 'react-redux';
-import './index.css';
+import {
+  BrowserRouter,
+  Route,
+} from 'react-router-dom';
+import {
+  applyMiddleware,
+  createStore,
+} from 'redux';
+import createSagaMiddleware from 'redux-saga';
+
+import App from './App.js';
+import state from './reducers';
+import rootSaga from './sagas';
 import * as serviceWorker from './serviceWorker';
-import createState from './reducers';
-import './mockData';
-import { fetchCarouselData, fetchAllArtical } from './actions';
 
-const history = createBrowserHistory();
+const saga = createSagaMiddleware();
 
-const store = createStore(createState(history), applyMiddleware(routerMiddleware(history), ReduxThunk));
-store.dispatch(fetchAllArtical('/data/artical'));
-store.dispatch(fetchCarouselData('/carouselData'));
+const store = createStore(state, applyMiddleware(saga));
+saga.run(rootSaga);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ConnectedRouter history={history}>
         <BrowserRouter>
           <Route path="/" component={App} />
         </BrowserRouter>
-      </ConnectedRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

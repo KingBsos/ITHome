@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { Carousel } from 'antd';
+
 import ArticalList from '../../ArticalList';
 import cn from './index.module.css';
-import { Carousel } from 'antd';
 
 function carouselInner(data) {
     return (
@@ -14,8 +16,12 @@ function carouselInner(data) {
         })
     );
 }
-function NewestPage({ articals, className, carouselData }) {
+function NewestPage({ articals, className, carouselData, fetchArtical, fetchCarousel }) {
     let containerClass = `${className} pX1rem h-100 o-a`;
+    useEffect(function () {
+        fetchCarousel();
+        fetchArtical();
+    }, [fetchArtical, fetchCarousel]);
     return (
         <div className={containerClass}>
             <div>

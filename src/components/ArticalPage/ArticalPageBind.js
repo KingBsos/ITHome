@@ -1,32 +1,39 @@
+import { denormalize } from 'normalizr';
 import { connect } from 'react-redux';
+
+import { artical } from '../../utils/entityRelation';
 import ArticalPage from './ArticalPage';
 
 function mapState(state, ownProps) {
-    let { entities: { articals, comments, users } } = state;
-    let { match } = ownProps;
-    let { params: { id } } = match;
-    let artical = articals.byId[id];
-    if (artical === undefined) {
+    let { entities } = state;
+    let { match: {
+        params: {id}
+    } } = ownProps;
+    let newEntities = {};
+    Object.keys(entities).forEach(key => {
+        newEntities[key] = {
+            ...entities[key].byId
+        }
+    });
+    if (!entities.articals.allIds.includes(id)) {
         ownProps.history.push('/404');
         return {};
     }
-    let newComments = artical.comments.map((item) => {
-        return comments.byId[item];
-    });
-    let newAuthor = users.byId[artical.author];
-    let newEditorInCharge = users.byId[artical.editorInCharge];
+    let articalCompleted = denormalize(id, artical, newEntities);
     return {
         ...ownProps,
-        artical: {
-            ...artical,
-            comments: newComments, author: newAuthor, editorInCharge: newEditorInCharge
-        }
+        artical: articalCompleted
     }
 }
 
-function mapDispatch(dispatch, ownProps) {
+function mapDispatch(dispatch) {
     return {
-
+        fetchArticalDetailData(id) {
+            dispatch({
+                type: 'fetchArticalDetailData',
+                payload: id
+            });
+        }
     }
 }
 

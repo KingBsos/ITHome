@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
 import cn from './index.module.css';
 
 function timeFormat(time) {
@@ -14,8 +15,11 @@ function timeFormat(time) {
     }
     return `${year}-${_(month)}-${_(day)} ${_(hours)}:${_(minutes)}`;
 }
-function ArticalPage({ artical, history }) {
-    if (!artical) {
+function ArticalPage({ artical, history, fetchArticalDetailData }) {
+    useEffect(function() {
+        fetchArticalDetailData(artical.id);
+    }, [fetchArticalDetailData]);
+    if (!artical.body) {
         return null;
     }
     return (

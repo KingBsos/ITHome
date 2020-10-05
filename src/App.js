@@ -1,8 +1,14 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import MainPage from './components/MainPage';
+
+import React from 'react';
+
+import {
+  Route,
+  Switch,
+} from 'react-router-dom';
+
 import { ArticalPageBind } from './components/ArticalPage';
+import MainPage from './components/MainPage';
 import Page404 from './components/Page404';
 
 function App(props) {

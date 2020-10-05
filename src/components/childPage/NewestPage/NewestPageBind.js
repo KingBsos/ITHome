@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
+
 import NewestPage from './NewestPage';
-import  { fetchAllArtical } from '../../../actions';
+
 function mapState({entities, ui: {carouselData}}) {
     return {
         carouselData,
@@ -10,7 +11,10 @@ function mapState({entities, ui: {carouselData}}) {
 function mapDispatch(dispatch) {
     return {
         fetchArtical() {
-            dispatch(fetchAllArtical('/data/artical/newest'));
+            dispatch({type: 'fetchAllArtical', payload: '/data/artical/newest'});
+        },
+        fetchCarousel() {
+            dispatch({type: 'fetchCarousel', payload: '/data/carousel'});
         }
     }
 }
