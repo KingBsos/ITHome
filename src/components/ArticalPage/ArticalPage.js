@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
+import Comment from '../Comment';
 import cn from './index.module.css';
 
 function timeFormat(time) {
@@ -16,10 +17,8 @@ function timeFormat(time) {
     return `${year}-${_(month)}-${_(day)} ${_(hours)}:${_(minutes)}`;
 }
 function ArticalPage({ artical, history, fetchArticalDetailData }) {
-    useEffect(function() {
-        fetchArticalDetailData(artical.id);
-    }, [fetchArticalDetailData]);
     if (!artical.body) {
+        fetchArticalDetailData(artical.id);
         return null;
     }
     return (
@@ -36,7 +35,7 @@ function ArticalPage({ artical, history, fetchArticalDetailData }) {
                 <small className={cn['author']}>{timeFormat(artical.time)} {artical.author.name}</small>
                 <div>{artical.body}</div>
                 <div className="d-f jc-sb ai-c fs_6rem PY_5rem">
-                    <div className="cv1">责任编辑: {artical.editorInCharge.name}</div>
+                    <div className="cv1">责任编辑: {artical.editorInCharge ? artical.editorInCharge.name : ''}</div>
                     <button className={cn['button-sm']}>我要纠错</button>
                 </div>
                 <div className="ta-c p1rem">
@@ -45,16 +44,42 @@ function ArticalPage({ artical, history, fetchArticalDetailData }) {
                     <button className={`${cn['button-bg']}`}>无价值</button>
                 </div>
                 <div>
-                    <h2>相关文章</h2>
-                    <div></div>
+                    <h2 class={cn['menu-title']}>相关文章</h2>
+                    {
+                        artical.relatedArticle ? artical.relatedArticle.map(item => {
+                            return (
+                                <div className="d-f" key={item.id}>
+                                    <div className={cn['relative-artical-left']}>
+                                        <h3>{item.title}</h3>
+                                        <small>{new Date(item.time).getFullYear() + '.' + new Date(item.time).getMonth() + '.' + new Date(item.time).getDay()}</small>
+                                    </div>
+                                    <div className={cn['relative-artical-right'] + ' VA-M'}>
+                                        <img className={cn['relative-artical-poster']} src={item.poster} />
+                                    </div>
+                                </div>
+                            );
+                        }) : ''
+                    }
                 </div>
                 <div>
-                    <h2>热门评论</h2>
-                    <div></div>
+                    <h2 class={cn['menu-title']}>热门评论</h2>
+                    <div>
+                        {
+                            artical.comments ? artical.comments.sort((a, b) => b.support - a.support).slice(0, 3).map(item => (
+                                <Comment key="item.id" comment={item}></Comment>
+                            )) : ''
+                        }
+                    </div>
                 </div>
                 <div>
-                    <h2>最新评论</h2>
-                    <div></div>
+                    <h2 class={cn['menu-title']}>最新评论</h2>
+                    <div>
+                        {
+                            artical.comments ? artical.comments.sort((a, b) => b.time-a.time).map(item => (
+                                <Comment key="item.id" comment={item}></Comment>
+                            )) : ''
+                        }
+                    </div>
                 </div>
             </div>
         </div>

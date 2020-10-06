@@ -4,7 +4,9 @@ const users = Mock.mock({
     "users|5": [
         {
             id: '@GUID',
-            name: '@name'
+            name: '@name',
+            level: '@NATURAL(0, 100)',
+            location: '-------'
         }
     ]
 }).users;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { Carousel } from 'antd';
 
@@ -18,10 +18,10 @@ function carouselInner(data) {
 }
 function NewestPage({ articals, className, carouselData, fetchArtical, fetchCarousel }) {
     let containerClass = `${className} pX1rem h-100 o-a`;
-    useEffect(function () {
+    if(articals.allIds.length === 0) {
         fetchCarousel();
         fetchArtical();
-    }, [fetchArtical, fetchCarousel]);
+    }
     return (
         <div className={containerClass}>
             <div>

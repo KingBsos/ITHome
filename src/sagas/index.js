@@ -12,6 +12,7 @@ import {
   addCarousel,
   addUser,
 } from '../actions';
+import { UNIFYUPDATE } from '../constants';
 import { artical } from '../utils/entityRelation';
 
 function articalDataNormalize(data) {
@@ -34,11 +35,11 @@ function* fetchCarousel({ payload: url }) {
 }
 function* fetchArticalDetailData({payload: id}) {
     const data = yield axios('/data/articaldetail/'+id).then(result => result.data.data);
-    // data.id = id;
-    // let {entities: {users, comments, articals}} = normalize(data, artical);
+    data.id = id;
+    let {entities} = normalize(data, artical);
     yield put({
-        type: 'addArticalDetail',
-        data
+        type: UNIFYUPDATE,
+        payload: entities
     });
 }
 function* rootSaga() {

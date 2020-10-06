@@ -53,19 +53,26 @@ Mock.mock(/\/data\/articaldetail\/*/, {
     statusText: 'OK',
     data: {
         body: '@CPARAGRAPH(20,30)',
+        editorInCharge: '@CUSTOMUSER',
         'relatedArticle|2-5': [
             {
                 id: '@GUID',
                 title: '@TITLE',
                 time: '@CUSTOMTIME(5000)',
-                poster: '@DATAIMAGE(100x50)'
+                poster: '@DATAIMAGE(100x100)'
             }
         ],
         "comments|3-8": [
             {
                 id: '@GUID',
                 user: '@CUSTOMUSER',
-                comment: '@paragraph(1)'
+                time: '@CUSTOMTIME(10000)',
+                text: '@paragraph(1)',
+                poster: '@DATAIMAGE(50x50)',
+                floorNumber: '@NATURAL(0, 50)',
+                follow: '@NATURAL(0, 10)',
+                support: '@NATURAL(0, 10)',
+                oppose: '@NATURAL(0, 10)',
             }
         ]
     }
