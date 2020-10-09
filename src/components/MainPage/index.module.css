@@ -7,6 +7,7 @@
 }
 .content-body {
     height: 100%;
+    overflow: auto;
 }
 .footer-navbar {
     position: absolute;

@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Comment from '../Comment';
 import cn from './index.module.css';
 
+function sorter(a, b) {
+    return b.time - a.time;
+}
+function sorterReverse(a, b) {
+    return a.time - b.time;
+}
 function timeFormat(time) {
     let date = new Date(time);
     let year = date.getFullYear();
@@ -17,6 +23,7 @@ function timeFormat(time) {
     return `${year}-${_(month)}-${_(day)} ${_(hours)}:${_(minutes)}`;
 }
 function ArticalPage({ artical, history, fetchArticalDetailData }) {
+    let [sortDerection, setSortDerection] = useState(false);
     if (!artical.body) {
         fetchArticalDetailData(artical.id);
         return null;
@@ -44,7 +51,7 @@ function ArticalPage({ artical, history, fetchArticalDetailData }) {
                     <button className={`${cn['button-bg']}`}>无价值</button>
                 </div>
                 <div>
-                    <h2 class={cn['menu-title']}>相关文章</h2>
+                    <h2 className={cn['menu-title']}>相关文章</h2>
                     {
                         artical.relatedArticle ? artical.relatedArticle.map(item => {
                             return (
@@ -62,21 +69,24 @@ function ArticalPage({ artical, history, fetchArticalDetailData }) {
                     }
                 </div>
                 <div>
-                    <h2 class={cn['menu-title']}>热门评论</h2>
+                    <h2 className={cn['menu-title']}>热门评论</h2>
                     <div>
                         {
-                            artical.comments ? artical.comments.sort((a, b) => b.support - a.support).slice(0, 3).map(item => (
-                                <Comment key="item.id" comment={item}></Comment>
+                            artical.comments.length > 0 ? artical.comments.sort((a, b) => b.support - a.support).slice(0, 3).map(item => (
+                                <Comment key={item.id} comment={item}></Comment>
                             )) : ''
                         }
                     </div>
                 </div>
                 <div>
-                    <h2 class={cn['menu-title']}>最新评论</h2>
+                    <div className="d-f js-sb">
+                        <h2 className={cn['menu-title']}>最新评论</h2>
+                        <button className="BTN" onClick={() => setSortDerection(bool => !bool)}>倒序</button>
+                    </div>
                     <div>
                         {
-                            artical.comments ? artical.comments.sort((a, b) => b.time-a.time).map(item => (
-                                <Comment key="item.id" comment={item}></Comment>
+                            artical.comments ? artical.comments.sort(sortDerection ? sorter : sorterReverse).map(item => (
+                                <Comment key={item.id} comment={item}></Comment>
                             )) : ''
                         }
                     </div>
