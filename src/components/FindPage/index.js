@@ -56,7 +56,7 @@ function FindPage() {
                     </a>
                 </div>
                 <div className={styles["block-module"]}>
-                    <a>
+                    <a href="/ksdfj">
                         <span className={styles['img'] + ' iconfont icon-icon-test'}></span>
                         <span>微信工具大全</span>
                     </a>
@@ -68,7 +68,7 @@ function FindPage() {
                     </a>
                 </div>
                 <div className={styles["block-module"]}>
-                    <a href="">
+                    <a href="/ksdfj">
                         <span className={styles['img'] + ' iconfont icon-yingyong'}></span>
                         <span>本机应用概览</span>
                     </a>
@@ -80,7 +80,7 @@ function FindPage() {
                     </a>
                 </div>
                 <div className={styles["block-module"]}>
-                    <a href="">
+                    <a href="/ksdfj">
                         <span className={styles['img'] + ' iconfont icon-yinpin'}></span>
                         <span>文字转音频</span>
                     </a>
@@ -107,19 +107,19 @@ function FindPage() {
             <div className={styles['function-module']}>
                 <h2 className={styles['title']}>之家</h2>
                 <div className={styles["block-module"]}>
-                    <a>
+                    <a href="/ksdfj">
                         <span className={styles['img'] + ' iconfont icon-report'}></span>
                         <span>2019年度报告</span>
                     </a>
                 </div>
                 <div className={styles["block-module"]}>
-                    <a>
+                    <a href="/ksdfj">
                         <span className={styles['img'] + ' iconfont icon-wenanfengmian'}></span>
                         <span>之家封面</span>
                     </a>
                 </div>
                 <div className={styles["block-module"]}>
-                    <a>
+                    <a href="/ksdfj">
                         <span className={styles['img'] + ' iconfont icon-wangluo'}></span>
                         <span>之家网络诊断</span>
                     </a>

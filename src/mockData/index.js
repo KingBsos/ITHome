@@ -68,7 +68,6 @@ Mock.mock(/\/data\/articaldetail\/*/, {
                 user: '@CUSTOMUSER',
                 time: '@CUSTOMTIME(10000)',
                 text: '@paragraph(1)',
-                poster: '@DATAIMAGE(50x50)',
                 floorNumber: '@NATURAL(0, 50)',
                 follow: '@NATURAL(0, 10)',
                 support: '@NATURAL(0, 10)',

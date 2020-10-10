@@ -1,0 +1,35 @@
+.footer-comment-panel2 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: rgb(204, 204, 204);
+    background-color: rgba(73, 73, 73, 0.568);
+    top: 0;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.footer-comment-panel2 .panel2 {
+    background-color: #fff;
+    padding: 5px 15px;
+}
+.custom-textarea {
+    width: 100%;
+    border: 0;
+    font-size: 17px;
+    color: rgb(134, 134, 134);
+}
+.custom-textarea:focus {
+    outline: 0;
+}
+.custom-submit-button {
+    background-color: #f00;
+    padding: 5px 15px;
+}
+.name {
+    font-size: 1.25rem;
+    flex: 1;
+    color: #333;
+}

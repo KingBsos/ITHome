@@ -5,6 +5,7 @@ const users = Mock.mock({
         {
             id: '@GUID',
             name: '@name',
+            headSculpture: '@DATAIMAGE(150x150)',
             level: '@NATURAL(0, 100)',
             location: '-------'
         }

@@ -6,7 +6,7 @@ function Comment({ comment }) {
     return (
         <div className="d-f">
             <div className={styles['left']}>
-                <img className={styles['poster']} src={comment.poster} />
+                <img className={styles['poster']} src={comment.user ? comment.user.headSculpture : ''} alt="..." />
                 <small>Lv.{comment.user ? comment.user.level : ''}</small>
             </div>
             <div className={styles['right']}>

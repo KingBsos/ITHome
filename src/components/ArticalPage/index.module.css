@@ -3,6 +3,8 @@
     height: 100%;
     overflow: auto;
     color: #000;
+    position: relative;
+    padding-bottom: 70px;
 }
 .header {
     padding: 10px;
@@ -47,4 +49,26 @@
 .menu-title {
     font-weight: 700;
     color: #000;
+}
+.footer-comment-panel {
+    position: fixed;
+    padding: 5px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: rgb(204, 204, 204);
+    background-color: #fff;
+    border-top: 1px solid rgb(235, 235, 235);
+}
+.footer-comment-panel *:focus {
+    outline: 0;
+}
+.custom-input-icon {
+    margin-right: 10px;
+}
+.footer-comment-panel .active {
+    color: #f00;
+}
+.custom-icon {
+    font-size: 25px;
 }

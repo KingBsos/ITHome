@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 
+import {
+  Link,
+  Route,
+} from 'react-router-dom';
+
 import Comment from '../Comment';
+import CommentEditor from '../CommentEditor';
 import cn from './index.module.css';
 
 function sorter(a, b) {
@@ -22,8 +28,9 @@ function timeFormat(time) {
     }
     return `${year}-${_(month)}-${_(day)} ${_(hours)}:${_(minutes)}`;
 }
-function ArticalPage({ artical, history, fetchArticalDetailData }) {
+function ArticalPage({ artical, history, fetchArticalDetailData, match, addComment, myId }) {
     let [sortDerection, setSortDerection] = useState(false);
+    let [comment, setComment] = useState('');
     if (!artical.body) {
         fetchArticalDetailData(artical.id);
         return null;
@@ -61,14 +68,14 @@ function ArticalPage({ artical, history, fetchArticalDetailData }) {
                                         <small>{new Date(item.time).getFullYear() + '.' + new Date(item.time).getMonth() + '.' + new Date(item.time).getDay()}</small>
                                     </div>
                                     <div className={cn['relative-artical-right'] + ' VA-M'}>
-                                        <img className={cn['relative-artical-poster']} src={item.poster} />
+                                        <img className={cn['relative-artical-poster']} src={item.poster} alt="..." />
                                     </div>
                                 </div>
                             );
                         }) : ''
                     }
                 </div>
-                <div>
+                <div className={`MY_5rem`}>
                     <h2 className={cn['menu-title']}>热门评论</h2>
                     <div>
                         {
@@ -79,9 +86,10 @@ function ArticalPage({ artical, history, fetchArticalDetailData }) {
                     </div>
                 </div>
                 <div>
-                    <div className="d-f js-sb">
+                    <div className="d-f jc-sb MY_5rem">
                         <h2 className={cn['menu-title']}>最新评论</h2>
-                        <button className="BTN" onClick={() => setSortDerection(bool => !bool)}>倒序</button>
+                        <button className="BTN" onClick={() => setSortDerection(bool => !bool)}>
+                            <span className={`iconfont icon-sort_icon m_5rem`}></span>倒序</button>
                     </div>
                     <div>
                         {
@@ -92,6 +100,42 @@ function ArticalPage({ artical, history, fetchArticalDetailData }) {
                     </div>
                 </div>
             </div>
+            <Route path={`${match.path}/commentedit`}>
+                {
+                    ({ match: match2 }) => {
+                        if (match2) {
+                            return (
+                                <CommentEditor comment={comment} onChange={setComment} onSubmit={() => addComment(artical.id, comment, myId)}/>
+                            );
+                        } else {
+                            return (
+                                <div className={cn['footer-comment-panel']}>
+                                    <div className="d-f ai-c">
+                                        <div className={`f1 ta-c`}>
+                                            <Link to={`${match.url}/commentedit`}>
+                                                <span className={`${cn['custom-input-icon']} iconfont icon-comment`}></span>写评论
+                                            </Link>
+                                        </div>
+                                        <button className={"BTN VA-M m_5rem " + cn['active']}>
+                                            <span className={cn['custom-icon'] + " iconfont icon-xinxi"}></span>
+                                            <span className="fs1_5rem"> {artical.comments ? artical.comments.length : ''}</span>
+                                        </button>
+                                        <button className="BTN m_5rem">
+                                            <span className={cn['custom-icon'] + " iconfont icon-xingxing"}></span>
+                                        </button>
+                                        <button className="BTN m_5rem">
+                                            <span className={cn['custom-icon'] + ' ' + cn['active'] + " iconfont icon-fenxiang"}></span>
+                                        </button>
+                                        <button className="BTN m_5rem">
+                                            <span className={cn['custom-icon'] + " iconfont icon-caidan"}></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            );
+                        }
+                    }
+                }
+            </Route>
         </div>
     );
 }
