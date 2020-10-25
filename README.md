@@ -1,5 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+<img width=350 height=700 src="./index1.png" />
+<img width=350 height=700 src="./index2.png" />
 ## Available Scripts
 
 In the project directory, you can run:
